@@ -17,6 +17,11 @@ $mostrarfoto=mysqli_query($conn,$sql);
 $query ="SELECT * from curso";
     $resultado=$conn->query($query);
 
+
+
+    $sql ="SELECT * from categoria" ;
+$result=mysqli_query($conn,$sql);
+
 ?>
 
 
@@ -80,6 +85,13 @@ $query ="SELECT * from curso";
 <div class="sub-menu">
   <div class="user-info">
   
+
+
+
+
+
+
+
 
 
 
@@ -160,6 +172,9 @@ while($foto=mysqli_fetch_assoc($mostrarfoto)){
               </li class="nav-item">
               <li>
                 <a class="nav-link" href="agregar_curso.php">Agregar Curso</a>
+              </li>
+              <li>
+                <a class="nav-link" href="agregar_categoria.php">Agregar Categoria</a>
               </li>
               
               
@@ -262,7 +277,14 @@ border-style: solid;" >
   
  
 
- 
+<select name="Categoria" id="Categoria" required>
+                    <option value="0">Lista De Categoria</option>
+                    <?php while($row = $result->fetch_assoc()) { ?>
+                    <option value="<?php echo $row['ID_Categoria'];?>"><?php echo $row['Titulo_Categoria']; ?></option>
+                    <?php } ?>
+                   
+
+                    </select>
  
 
 

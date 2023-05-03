@@ -14,8 +14,8 @@ $sql ="SELECT Foto_Usuario from usuario where ID_Usuario=$id";
 $mostrarfoto=mysqli_query($conn,$sql);
 
 
-$sql ="SELECT * from categoria" ;
-$result=mysqli_query($conn,$sql);
+
+
 
 
 ?>
@@ -241,100 +241,31 @@ border-style: solid;color: white;" >
 
 
 
-<h5>Agregar Curso</h5>
+<h5>Agregar Categoria</h5>
 
 <div class="contenedor">
 
-<form class="formulario" action="guardar_curso.php"  method="POST" id="form" enctype="multipart/form-data">
+<form class="formulario" action="guardar_categoria.php"  method="POST" id="form" enctype="multipart/form-data">
 <div class="input-contenedor">
-<label for="">Titulo del Curso</label>
-<input type="text" name="Titulo_Curso" id="Titulo_Curso" placeholder="Titulo del curso">
-</div>
-
-
-
-<div class="input-contenedor">
-<label for="">Categoria</label>
-<select name="Categoria_Curso" id="Categoria_Curso" required>
-                    <option value="0">Lista De Categoria</option>
-                    <?php while($row = $result->fetch_assoc()) { ?>
-                    <option value="<?php echo $row['ID_Categoria'];?>"><?php echo $row['Titulo_Categoria']; ?></option>
-                    <?php } ?>
-                   
-
-                    </select>
+<label for="">Titulo de la Categoria</label>
+<input type="text" name="Titulo_Categoria" id="Titulo_Categoria" placeholder="Titulo del curso">
 </div>
 
 
 
 
 
-
-
-<div class="input-contenedor">
-<label for="">Calificacion del Curso</label>
-<input type="number" name="Calificacion_Curso" id="Calificacion_Curso" placeholder="Calificacion del curso">
-</div>
-
-
-
-<div class="contenedor">
-            <div class="input-contenedor">
-            <label for="">Foto del Curso</label>
-                <input type="file" name="Foto_Curso" id="Foto_Usuario" class="foto" required  accept="image/png, image/jpeg" required>
-                
-                
-                <div id="preview" class="styleImage">
-                
-                </div>
-
-
-            </div>
-
-            <div class="contenedor">
-            <div class="input-contenedor">
-            <label for="">Foto del Curso2</label>
-                <input type="file" name="Foto_Curso2" id="Foto_Usuario2" class="foto" required  accept="image/png, image/jpeg" required>
-                
-                
-                <div id="preview2" class="styleImage">
-                
-                </div>
-
-
-            </div>
-
-            <div class="contenedor">
-            <div class="input-contenedor">
-            <label for="">Foto del Curso3</label>
-                <input type="file" name="Foto_Curso3" id="Foto_Usuario3" class="foto" required  accept="image/png, image/jpeg" required>
-                
-                
-                <div id="preview3" class="styleImage">
-                
-                </div>
-
-
-            </div>
 
 
  <div class="input-contenedor">
- <label for="">Descripcion del Curso</label>
- <textarea id="w3review" name="Descripcion_Curso" rows="4" cols="50"></textarea>
+ <label for="">Descripcion</label>
+ <textarea id="w3review" name="Descripcion_Categoria" rows="4" cols="50"></textarea>
 </div>
 
 
-<div class="input-contenedor">
-<label for="">Precio del Curso</label>
-<input type="number" name="Costo_Curso" id="Costo_Curso" placeholder="Precio del curso">
-</div>
 
-<div class="input-contenedor">
-<label for="">Niveles del Curso</label>
-<input type="number" name="Niveles_Curso" id="Niveles_Curso" placeholder="Niveles del curso">
-</div>
 
-<input type="submit" value="AgregarCurso"  name="AgregarCurso"  class="button">
+<input type="submit" value="AgregarCategoria"  name="AgregarCategoria"  class="button">
 
 </form>
 
