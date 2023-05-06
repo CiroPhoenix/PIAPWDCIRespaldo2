@@ -12,6 +12,12 @@ $id = $_SESSION['ID_Usuario'];
 $sql ="SELECT Foto_Usuario from usuario where ID_Usuario=$id";
 $mostrarfoto=mysqli_query($conn,$sql);
 
+
+$id= $_REQUEST['ID_Curso'];
+$sql ="SELECT * from curso WHERE ID_Curso='$id'";
+$result=mysqli_query($conn,$sql);
+
+
 ?>
 
 
@@ -204,6 +210,11 @@ while($foto=mysqli_fetch_assoc($mostrarfoto)){
     px; margin-top: -5px;">0</span>
     
      </div>
+
+     <?php 
+
+$filas = $result->fetch_assoc();
+?>
     
 <div class="row">
 
@@ -212,16 +223,16 @@ while($foto=mysqli_fetch_assoc($mostrarfoto)){
       <div id="carouselImages"  class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="img/Graficas.jpg"  class="d-block w-100">
+          <img class="d-block w-100" src= "data:image/jpeg;base64, <?php echo base64_encode($filas['Foto_Curso']); ?> "/>
             
           </div>
 
           <div class="carousel-item ">
-            <img src="img/Graficas2.png"  class="d-block w-100">
+          <img class="d-block w-100" src= "data:image/jpeg;base64, <?php echo base64_encode($filas['Foto_Curso2']); ?> "/>
           </div>
 
           <div class="carousel-item ">
-            <img src="img/Graficas3.jpg"  class="d-block w-100">
+          <img class="d-block w-100" src= "data:image/jpeg;base64, <?php echo base64_encode($filas['Foto_Curso3']); ?> "/>
           </div>
 
          
@@ -248,39 +259,19 @@ while($foto=mysqli_fetch_assoc($mostrarfoto)){
  
  
 </video>
-    <h2 class="card-title">Curso de Graficas</h2>
+    <h2 class="card-title"><?php echo $filas['Titulo_Curso']?></h2>
 
-<h2>$ 150.00 MX</h2>
+<h2>$<?php echo $filas['Costo_Curso']?>MX</h2>
 <p>Lo que vas a aprender:</p>
+
+
 <p class="lead">
-    Curso de Graficas 3D tradicional
-    Aprovecha el tiempo de aprender a diseñar videojuegos en tercera dimension por Visual Studio y con Three.js
+<?php echo $filas['Descripcion_Curso']?>
 </p>
 
-
-<p>Este curso contiene:</p>
+<p>Clasificacion Del Curso:</p>
 <p class="lead">
-    3 horas de clases por dia
- 
-</p>
-
-
-<p class="lead">
- 
-  Recursos descargables
-
-</p>
-
-
-<p class="lead">
-
-  Tareas
- 
-</p>
-
-<p class="lead">
-
-  Certificado de finalizacion
+<?php echo $filas['Calificacion_Curso']?>
  
 </p>
 
@@ -297,6 +288,9 @@ while($foto=mysqli_fetch_assoc($mostrarfoto)){
 
 </div>
 
+<?php
+
+?>
 
 
 <div class="row pr-md-5 d-flex justify-content-center justify-content-md-end bg-info">

@@ -29,6 +29,8 @@ $mostrarfoto=mysqli_query($conn,$sql);
     <title>Academia Saturno - Inicio</title>
     <link rel="stylesheet" href="css/estilos.css" />
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.slim.min.js"></script>
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
    <link rel="stylesheet" 
    href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
    <script src="js/jquery2.js"></script>
@@ -253,6 +255,33 @@ border-style: solid;" >
   
    </div>
   
+   <h1>Lista de Usuarios </h1>
+
+
+
+
+  
+<div class="jumbotron">
+		<div class="input-group mb-3">
+		  <input type="text" class="form-control" id="txtbusca_curso" placeholder="Buscar Usuarios" aria-label="Buscar" aria-describedby="basic-addon2">
+		  <div class="input-group-append">
+		   
+		  </div>
+      
+		</div>
+
+
+
+
+
+
+
+
+
+
+    
+    <div class="salida2">Resultados</div>
+		</div>
 
 
 </div>
@@ -263,275 +292,79 @@ border-style: solid;" >
 <div class="contenedor-filtro" style="margin-left: 120px;">
 
   <div style="margin-top: 5px;">
-<input class="boton-filtro" type="radio" name="filtro" id="todo" checked>
-<label class="filtro" for="todo">Todo</label>   
-<input class="boton-filtro" type="radio" name="filtro" id="ptyhon" checked>
-<label class="filtro" for="ptyhon">Ptyhon</label>   
-<input class="boton-filtro" type="radio" name="filtro" id="videojuegos" checked>
-<label class="filtro" for="videojuegos">Desarrollo de Videojuegos</label>   
-<input class="boton-filtro" type="radio" name="filtro" id="dibujo" checked>
-<label class="filtro" for="dibujo">Dibujo </label>   
-<input class="boton-filtro" type="radio" name="filtro" id="graficas" checked>
-<label class="filtro" for="graficas">Graficas 3D</label>  
+
 
 <div class="imagenes-filtro">
-  
-  <div class="ptyhon">
+
+
+<?php 
+
+
+
+    $query ="SELECT * FROM curso";
+    $resultado=$conn->query($query);
+
+    while($filas = $resultado->fetch_assoc()){
+
+    ?>
+
+
     <div class="col-md-3 mt-5" >
  
 
       <div class="cards p-2">
         
-          <img  class="card-img-top" src="img/Ptyhon.jpg" alt="">
+      <img class="card-img-top" src= "data:image/jpeg;base64, <?php echo base64_encode($filas['Foto_Curso2']); ?> " alt=""/>
         
     
         
         <div class="card-body">
     <div class="d-flex justify-content-between">
     
-      <h5  class="card-title">Ptyhon</h5>
-    <span class="text-success">$150.00 MXN</span>
+      <h5  class="card-title"><?php echo $filas['Titulo_Curso']?></h5>
+    
+    <span class="text-success">$<?php echo $filas['Costo_Curso']?>MX</span>
     </div>
-    <p class="card-text" style="font-size: 14px;">NanoFlex</p>
+    <p class="card-text" style="font-size: 14px;">Calificacion: <?php echo $filas['Niveles_Curso']?></p>
     <div class="d-flex justify-content-between">
     <div class="bg-dark text-white text-center pl-2 pr-2 cart_btn">Agregar Carrito</div>
-    <a  class="bg-dark text-white text-center pl-2 pr-2" href="curso-detalle.php">Ver Curso</a>
+   
+    <a  class="bg-dark text-white text-center pl-2 pr-2" href="curso-detalle.php?ID_Curso=<?php echo $filas['ID_Curso']?>">Ver Curso</a>
     <div class="bg-dark text-white text-center pl-2 pr-2">Lista de deseo</div>
     </div>
         </div>
       </div>
     </div>
+    <?php
+
+}
 
 
-  </div>
-
-
-
-  <div class="ptyhon">
-    <div class="col-md-3 mt-5" >
- 
-
-      <div class="cards p-2">
-        
-          <img  class="card-img-top" src="img/Ptyhon2.jpg" alt="">
-        
-    
-        
-        <div class="card-body">
-    <div class="d-flex justify-content-between">
-    
-      <h5  class="card-title">Ptyhon II</h5>
-    <span class="text-success">$150.00 MXN</span>
-    </div>
-    <p class="card-text" style="font-size: 14px;">NanoFlex</p>
-    <div class="d-flex justify-content-between">
-    <div class="bg-dark text-white text-center pl-2 pr-2 cart_btn">Agregar Carrito</div>
-    <a  class="bg-dark text-white text-center pl-2 pr-2" href="curso-detalle.php">Ver Curso</a>
-    <div class="bg-dark text-white text-center pl-2 pr-2">Lista de deseo</div>
-    </div>
-        </div>
-      </div>
-    </div>
-
-
-  </div>
-  
-  
-
-  <div class="dibujo">
-    <div class="col-md-3 mt-5">
-      <div class="cards p-2">
-    
-        
-          <img  class="card-img-top" src="img/Dibujo.jpg" alt="">
-        
-        <div class="card-body">
-    <div class="d-flex justify-content-between">
-    
-      <h5 id="dibujo" class="card-title">Dibujo</h5>
-    <span class="text-success">$120.00 MXN</span>
-    
-    </div>
-    <p class="card-text" style="font-size: 14px;">NanoFlex</p>
-    <div class="d-flex justify-content-between">
-    
-    <div class="bg-dark text-white text-center pl-2 pr-2 cart_btn">Agregar Carrito</div>
-    <a  class="bg-dark text-white text-center pl-2 pr-2" href="curso-detalle.php">Ver Curso</a>
-    <div class="bg-dark text-white text-center pl-2 pr-2">Lista de deseo</div>
-    
-    </div>
-    
-        </div>
-    
-      </div>
-    </div>
-  </div>
-
-
-
-
-  <div class="dibujo">
-    <div class="col-md-3 mt-5">
-      <div class="cards p-2">
-    
-        
-          <img  class="card-img-top" src="img/Dibujo2.jpg" alt="">
-        
-        <div class="card-body">
-    <div class="d-flex justify-content-between">
-    
-      <h5 id="dibujo" class="card-title">Dibujo II</h5>
-    <span class="text-success">$95.00 MXN</span>
-    
-    </div>
-    <p class="card-text" style="font-size: 14px;">NanoFlex</p>
-    <div class="d-flex justify-content-between">
-    
-    <div class="bg-dark text-white text-center pl-2 pr-2 cart_btn">Agregar Carrito</div>
-    <a  class="bg-dark text-white text-center pl-2 pr-2" href="curso-detalle.php">Ver Curso</a>
-    <div class="bg-dark text-white text-center pl-2 pr-2">Lista de deseo</div>
-    
-    </div>
-    
-        </div>
-    
-      </div>
-    </div>
-  </div>
-  
-
-
-  <div class="graficas">
-    <div class="col-md-3 mt-5">
-      <div class="cards p-2">
-    
-        
-          <img  class="card-img-top" src="img/Graficas.jpg" alt="">
-        
-        <div class="card-body">
-    <div class="d-flex justify-content-between">
-    
-      <h5 id="dibujo" class="card-title">Graficas</h5>
-    <span class="text-success">$95.00 MXN</span>
-    
-    </div>
-    <p class="card-text" style="font-size: 14px;">NanoFlex</p>
-    <div class="d-flex justify-content-between">
-    
-    <div class="bg-dark text-white text-center pl-2 pr-2 cart_btn">Agregar Carrito</div>
-    <a  class="bg-dark text-white text-center pl-2 pr-2" href="curso-detalle.php">Ver Curso</a>
-    <div class="bg-dark text-white text-center pl-2 pr-2">Lista de deseo</div>
-    
-    </div>
-    
-        </div>
-    
-      </div>
-    </div>
-  </div>
-
-
-  <div class="graficas">
-    <div class="col-md-3 mt-5">
-      <div class="cards p-2">
-    
-        
-          <img  class="card-img-top" src="img/Graficas2.png" alt="">
-        
-        <div class="card-body">
-    <div class="d-flex justify-content-between">
-    
-      <h5 id="dibujo" class="card-title">Graficas II</h5>
-    <span class="text-success">$95.00 MXN</span>
-    
-    </div>
-    <p class="card-text" style="font-size: 14px;">NanoFlex</p>
-    <div class="d-flex justify-content-between">
-    
-    <div class="bg-dark text-white text-center pl-2 pr-2 cart_btn">Agregar Carrito</div>
-    <a  class="bg-dark text-white text-center pl-2 pr-2" href="curso-detalle.php">Ver Curso</a>
-    <div class="bg-dark text-white text-center pl-2 pr-2">Lista de deseo</div>
-    
-    </div>
-    
-        </div>
-    
-      </div>
-    </div>
-  </div>
-  
-  
-
-  <div class="videojuegos">
-    <div class="col-md-3 mt-5">
-      <div class="cards p-2">
-  
-        
-          <img  class="card-img-top" src="img/Videojuegos.jpg" alt="">
-        
-        <div class="card-body">
-    <div class="d-flex justify-content-between">
-    
-      <h5 id="dibujo" class="card-title">Videojuegos</h5>
-    <span class="text-success">$150.00 MXN</span>
-    
-    </div>
-    <p class="card-text" style="font-size: 14px;">NanoFlex</p>
-    <div class="d-flex justify-content-between">
-    
-    <div class="bg-dark text-white text-center pl-2 pr-2 cart_btn">Agregar Carrito</div>
-    <a  class="bg-dark text-white text-center pl-2 pr-2" href="curso-detalle.php">Ver Curso</a>
-    <div class="bg-dark text-white text-center pl-2 pr-2">Lista de deseo</div>
-    
-    </div>
-    
-        </div>
-    
-      </div>
-    </div>
-  </div>
-
-
-  <div class="videojuegos">
-    <div class="col-md-3 mt-5">
-      <div class="cards p-2">
-  
-        
-          <img  class="card-img-top" src="img/Videojuegos2.jpg" alt="">
-        
-        <div class="card-body">
-    <div class="d-flex justify-content-between">
-    
-      <h5 id="dibujo" class="card-title">Videojuegos II</h5>
-    <span class="text-success">$150.00 MXN</span>
-    
-    </div>
-    <p class="card-text" style="font-size: 14px;">NanoFlex</p>
-    <div class="d-flex justify-content-between">
-    
-    <div class="bg-dark text-white text-center pl-2 pr-2 cart_btn">Agregar Carrito</div>
-    <a  class="bg-dark text-white text-center pl-2 pr-2" href="curso-detalle.php">Ver Curso</a>
-    <div class="bg-dark text-white text-center pl-2 pr-2">Lista de deseo</div>
-    
-    </div>
-    
-        </div>
-    
-      </div>
-    </div>
-  </div>
-
- 
-  </div>
-
-
-
-  
-
-
+?>
 
 
 </div>
+
+<script>
+		$(document).ready(function(){
+			$("#txtbusca_curso").keyup(function(){
+				var parametros="txtbusca_curso="+$(this).val()
+				$.ajax({
+	                data:  parametros,
+	                url:   'buscador_curso.php',
+	                type:  'post',
+	                beforeSend: function () { },
+	                success:  function (response) {                	
+	                    $(".salida2").html(response);
+	                },
+	                error:function(){
+	                	alert("error")
+	                }
+            	});
+			})
+		})
+	</script>
+
 
 </div>
 
@@ -599,6 +432,8 @@ subMenu.classList.toggle("open-menu");
 
 
 </script>
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
