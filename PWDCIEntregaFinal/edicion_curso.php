@@ -7,7 +7,7 @@ session_start();
 if(!isset($_SESSION['Nombre_Usuario'])){
     header("Location: login.php");
 }
-
+$id= $_REQUEST['ID_Curso'];
 $id_usuario = $_SESSION['ID_Usuario'];
 $Niveles_Curso =$_POST['Niveles_Curso'];
 $Costo_Curso =$_POST['Costo_Curso'];
@@ -22,7 +22,8 @@ $Categoria_Curso =$_POST['Categoria_Curso'];
 
 //INSERT INTO curso(Instructor_Curso, Niveles_Curso, Costo_Curso, Descripcion_Curso, Calificacion_Curso, Titulo_Curso) VALUES ('$id_usuario', '$Niveles_Curso', '$Costo_Curso', '$Descripcion_Curso', '$Calificacion_Curso', '$Foto_Curso','$Titulo_Curso','$Foto_Curso2','$Foto_Curso3');
 
-$query ="INSERT INTO curso(Instructor_Curso, Niveles_Curso, Costo_Curso, Descripcion_Curso, Calificacion_Curso, Foto_Curso, Titulo_Curso, Foto_Curso2, Foto_Curso3,Categoria_Curso) VALUES ('$id_usuario', '$Niveles_Curso', '$Costo_Curso', '$Descripcion_Curso', '$Calificacion_Curso', '$Foto_Curso','$Titulo_Curso','$Foto_Curso2','$Foto_Curso3','$Categoria_Curso')";
+//  $sql="UPDATE usuario set Foto_Usuario= '$Foto_Usuario',Nombre_Usuario='$Nombre_Usuario', NomPatr_Usuario = '$NomPatr_Usuario', NomMatr_Usuario = '$NomMatr_Usuario',Rol_Usuario='$Rol_Usuario',Rol_Usuario='$Rol_Usuario',Genero_Usuario='$Genero_Usuario',Nacimiento_Usuario='$Nacimiento_Usuario',Correo_Usuario='$Correo_Usuario',Nombre_usuario_Usuario='$Nombre_usuario_Usuario',Contrasena_Usuario='$Contrasena_Usuario' WHERE ID_Usuario=$id";
+$query ="UPDATE curso set Niveles_Curso='$Niveles_Curso', Costo_Curso='$Costo_Curso', Descripcion_Curso='$Descripcion_Curso', Calificacion_Curso='$Calificacion_Curso', Foto_Curso='$Foto_Curso', Titulo_Curso='$Titulo_Curso', Foto_Curso2='$Foto_Curso2', Foto_Curso3='$Foto_Curso3',Categoria_Curso='$Categoria_Curso' WHERE ID_Curso ='$id'";
 $resultado = $conn->query($query);
 
 if($resultado){

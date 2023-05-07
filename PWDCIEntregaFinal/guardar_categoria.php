@@ -20,7 +20,7 @@ $query ="INSERT INTO categoria(Instructor_Categoria,Titulo_Categoria, Descripcio
 $resultado = $conn->query($query);
 
 if($resultado){
-echo "Si se inserto";
+    header("location:indexMaestro.php");
 }else{
 echo "No se Inserto";
 }

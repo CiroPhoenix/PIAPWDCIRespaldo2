@@ -52,7 +52,7 @@ $result=mysqli_query($conn,$sql);
         <div class="container-fluid">
       
 
-        <a class="navbar-brand" href="index.php">
+        <a class="navbar-brand" href="indexMaestro.php">
           
             <img src="img/SaturnoLogo.png" alt="logo" width="150px">
           </a>
@@ -63,7 +63,7 @@ $result=mysqli_query($conn,$sql);
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="navbar-nav">
-           <a class="navbar-brand" href="index.php">
+           <a class="navbar-brand" href="indexMaestro.php">
             <img src="img/SaturnoLogo.png" alt="logo" width="150px">
           </a>
 
@@ -71,7 +71,7 @@ $result=mysqli_query($conn,$sql);
             
             
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                <a class="nav-link active" aria-current="page" href="indexMaestro.php">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Link</a>

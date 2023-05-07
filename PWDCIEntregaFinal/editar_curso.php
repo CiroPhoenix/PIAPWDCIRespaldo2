@@ -14,13 +14,17 @@ $sql ="SELECT Foto_Usuario from usuario where ID_Usuario=$id";
 $mostrarfoto=mysqli_query($conn,$sql);
 
 
-$query ="SELECT * from curso";
-    $resultado=$conn->query($query);
 
 
 
-    $sql ="SELECT * from categoria";
+$id= $_REQUEST['ID_Curso'];
+$sql ="SELECT * from curso WHERE ID_Curso='$id'";
 $result=mysqli_query($conn,$sql);
+
+$sql2 ="SELECT * from categoria";
+$result2=mysqli_query($conn,$sql2);
+
+
 
 ?>
 
@@ -35,13 +39,12 @@ $result=mysqli_query($conn,$sql);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academia Saturno - Inicio-Maestro</title>
+    <title>Academia Saturno - Inicio</title>
     <link rel="stylesheet" href="css/estilos.css" />
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.slim.min.js"></script>
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
    <link rel="stylesheet" 
    href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
-   <script src="js/jquery.js"></script>
+   <script src="jquery.js"></script>
 
 <style>
 
@@ -86,13 +89,6 @@ $result=mysqli_query($conn,$sql);
 <div class="sub-menu">
   <div class="user-info">
   
-
-
-
-
-
-
-
 
 
 
@@ -172,13 +168,15 @@ while($foto=mysqli_fetch_assoc($mostrarfoto)){
                 <a class="nav-link active" aria-current="page" href="indexMaestro.php">Home</a>
               </li class="nav-item">
               <li>
-                <a class="nav-link" href="agregar_curso.php">Agregar Curso</a>
-              </li>
-              <li>
-                <a class="nav-link" href="agregar_categoria.php">Agregar Categoria</a>
+                <a class="nav-link" href="#">Link</a>
               </li>
               
-              
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                 Agregar Curso
+                </a>
+               
+              </li>
               <div class="col-md-6">
 
 
@@ -192,8 +190,6 @@ while($foto=mysqli_fetch_assoc($mostrarfoto)){
 
 <div class="user-pic">
            
-
-
 
 
              <img src="img/ProfilePicture.png" class="user-pic" onclick="toggleMenu()" >
@@ -248,220 +244,144 @@ while($foto=mysqli_fetch_assoc($mostrarfoto)){
 
 
 <div class="container p-5 mt-2" style="background-image: url('img/Galaxia.jpg'); background-repeat: no-repeat; background-size: cover;   border-color: rgb(255, 102, 151) rgb(120, 0, 74) rgb(255, 102, 151) rgb(120, 0, 74); border-width: 35px;
-border-style: solid;" >
+border-style: solid;color: white;" >
   <div class="row d-flex justify-content-center">
 
-  <div class="jumbotron">
-		<div class="input-group mb-3">
-		  <input type="text" class="form-control" id="txtbusca_curso" placeholder="Buscar Usuarios" aria-label="Buscar" aria-describedby="basic-addon2">
-		  <div class="input-group-append">
-		   
-		  </div>
-      
-		</div>
 
 
+<h5>Editar Curso</h5>
 
 
+<div class="contenedor">
+<?php 
 
+$row = $result->fetch_assoc();
 
+?>
+<form class="formulario" action="edicion_curso.php?ID_Curso=<?php echo $row['ID_Curso']?>"  method="POST" id="form" enctype="multipart/form-data">
 
-
-
-
-    
-    <div class="salida2">Resultados</div>
-		</div>
-
-<div class="cart" >
-  <div class="pt-3 pl-0 pb-0 pr-0" style="height: auto; width: auto;">
-  <i class="fas fa-shopping-cart fa-2x ml-md-5" style="color:white;">  </i>
-  </div>
-  
-  <span style="background-color: purple;" class="badge badge-sucess mt-0 align-self-start" id="cart_item_count" style="margin-left: -25
-  px; margin-top: -5px;">0</span>
-  
-   </div>
-  
-
-
+<div class="input-contenedor">
+<label for="">Titulo del Curso</label>
+<input type="text" name="Titulo_Curso" id="Titulo_Curso" placeholder="Titulo del curso" value="<?php echo $row['Titulo_Curso']; ?>">
 </div>
-<div class="row p-5" id="panel">
-<h1 class="display-3 text-center text-muted" id="not_find_any_thing"></h1>
 
 
-<div class="contenedor-filtro" style="margin-left: 120px;">
 
- 
+<div class="input-contenedor">
 
-<div class="imagenes-filtro">
-  
- 
-
-<select name="Categoria" id="Categoria" required>
+<label for="">Categoria</label>
+<select name="Categoria_Curso" id="Categoria_Curso" required>
                     <option value="0">Lista De Categoria</option>
-                    <?php while($row = $result->fetch_assoc()) { ?>
-                    <option value="<?php echo $row['ID_Categoria'];?>"><?php echo $row['Titulo_Categoria']; ?></option>
+                    <?php while($row2 = $result2->fetch_assoc()) { ?>
+                    <option value="<?php echo $row2['ID_Categoria'];?>"><?php echo $row2['Titulo_Categoria']; ?></option>
                     <?php } ?>
                    
 
                     </select>
- 
+</div>
 
 
 
 
-<h1>Mis Cursos</h1>
+
+
+
+<div class="input-contenedor">
+<label for="">Calificacion del Curso</label>
+<input type="number" name="Calificacion_Curso" id="Calificacion_Curso" placeholder="Calificacion del curso" value="<?php echo $row['Calificacion_Curso'];?>">
+</div>
+
+
+
+<div class="contenedor">
+            <div class="input-contenedor">
+            <label for="">Foto del Curso</label>
+            <img width="120px" height="120px" src= "data:image/jpeg;base64, <?php echo base64_encode($row['Foto_Curso']); ?> "/>
+                <input type="file" name="Foto_Curso" id="Foto_Usuario" class="foto" required  accept="image/png, image/jpeg" required>
+                
+                
+                <div id="preview" class="styleImage">
+                
+                </div>
+
+
+            </div>
+
+            <div class="contenedor">
+            <div class="input-contenedor">
+            <label for="">Foto del Curso2</label>
+            
+            <img width="120px" height="120px" src= "data:image/jpeg;base64, <?php echo base64_encode($row['Foto_Curso2']); ?> "/>
+                <input type="file" name="Foto_Curso2" id="Foto_Usuario2" class="foto" required  accept="image/png, image/jpeg" required>
+                
+                
+                <div id="preview2" class="styleImage">
+                
+                </div>
+
+
+            </div>
+
+            <div class="contenedor">
+            <div class="input-contenedor">
+            <label for="">Foto del Curso3</label>
+            
+            <img width="120px" height="120px" src= "data:image/jpeg;base64, <?php echo base64_encode($row['Foto_Curso3']); ?> "/>
+                <input type="file" name="Foto_Curso3" id="Foto_Usuario3" class="foto" required  accept="image/png, image/jpeg" required>
+                
+                
+                <div id="preview3" class="styleImage">
+                
+                </div>
+
+
+            </div>
+
+
+ <div class="input-contenedor">
+ <label for="">Descripcion del Curso</label>
+ <textarea id="w3review" name="Descripcion_Curso" rows="4" cols="50" value="<?php echo $row['Descripcion_Curso'];?>"><?php echo $row['Descripcion_Curso'];?></textarea>
+</div>
+
+
+<div class="input-contenedor">
+<label for="">Precio del Curso</label>
+<input type="number" name="Costo_Curso" id="Costo_Curso" placeholder="Precio del curso" value="<?php echo $row['Costo_Curso'];?>">
+</div>
+
+<div class="input-contenedor">
+<label for="">Niveles del Curso</label>
+<input type="number" name="Niveles_Curso" id="Niveles_Curso" placeholder="Niveles del curso" value="<?php echo $row['Niveles_Curso'];?>">
+</div>
+
 <?php 
 
+?>
+
+<input type="submit" value="EditarCurso"  name="EditarCurso"  class="button">
+
+</form>
 
 
-    $query ="SELECT * FROM curso where Instructor_Curso=$id";
-    $resultado=$conn->query($query);
 
-    while($filas = $resultado->fetch_assoc()){
 
-    ?>
-
-<div class="col-md-3 mt-5" >
- 
-
- <div class="cards p-2">
-   
-     
-     <img class="card-img-top" src= "data:image/jpeg;base64, <?php echo base64_encode($filas['Foto_Curso2']); ?> " alt=""/>
-   
-
-   
-   <div class="card-body">
-<div class="d-flex justify-content-between">
-
-<h5  class="card-title"><?php echo $filas['Titulo_Curso']?></h5>
-<span class="text-success"><?php echo $filas['Costo_Curso']?>MX</span>
 </div>
-<p class="card-text" style="font-size: 14px;">Calificacion: <?php echo $filas['Niveles_Curso']?></p>
-
-
-
-<div class="d-flex justify-content-between">
-<a class="bg-dark text-white text-center pl-2 pr-2" href="editar_curso.php?ID_Curso=<?php echo $filas['ID_Curso']?>"> Editar</a>
-<a  class="bg-dark text-white text-center pl-2 pr-2" href="DetallesDelCurso.php?ID_Curso=<?php echo $filas['ID_Curso']?>">Ver Curso</a>
-
-        
-
-<div class="bg-dark text-white text-center pl-2 pr-2">Eliminar</div>
-</div>
-   </div>
- </div>
-</div>
-
-    <?php
-
-    }
-    
-
-    ?>
-
-
-
- 
-  </div>
-
-  <script>
-		$(document).ready(function(){
-			$("#txtbusca_curso").keyup(function(){
-				var parametros="txtbusca_curso="+$(this).val()
-				$.ajax({
-	                data:  parametros,
-	                url:   'buscador_curso.php',
-	                type:  'post',
-	                beforeSend: function () { },
-	                success:  function (response) {                	
-	                    $(".salida2").html(response);
-	                },
-	                error:function(){
-	                	alert("error")
-	                }
-            	});
-			})
-		})
-	</script>
-
   
 
 
-
-
-</div>
-
-</div>
-
-
-
-
-
-
-
- </div>
-
-</div>
-
-
-
-<div class="row pr-md-5 d-flex justify-content-center justify-content-md-end bg-info">
-<div class="col-md-6 col-lg-4 mr-lg-5 border p-3 pb-4 rounded-lg bg-white ml-md-0" id="cart" style="position:
-absolute;z-index: 1;top: 80px;overflow: auto;">
-
-
-<div class="d-flex">
-<div class="col-md-3">
-<h5>Productos</h5>
-</div>
-<div class="col-md-3 d-flex flex-wrap align-content-center">
-<h5>Title</h5>
-</div>
-<div class="col-md-3 d-flex flex-wrap align-content-center">
-<h5>Qty</h5>
-</div>
-<div class="col-md-2 d-flex flex-wrap align-content-center">
-<h5>Price</h5>
-</div>
-<div class="col-md-1"></div>
-
-
-</div>
-
-<div id="order" style="overflow: auto;height: 250px;">
-
-
-</div>
-<div id="cart_footer" >
-<div id="order_btn" class="text-center text-white w-100 bg-dark p-2 font-weight-bold" style="letter-spacing: 
-1.2px; font-size: 20px;">
-  Order
-</div>
-
 </div>
 
 
 </div>
 
-</div>
-
-<script>
-
-  let subMenu = document.getElementById("subMenu");
-
-  function toggleMenu(){
-
-subMenu.classList.toggle("open-menu");
-
-  }
 
 
-</script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
+<script src="Foto.js"></script>
+<script src="Foto2.js"></script>
+<script src="Foto3.js"></script>
 </html>
 
 

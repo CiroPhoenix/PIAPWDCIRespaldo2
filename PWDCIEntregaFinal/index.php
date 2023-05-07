@@ -243,25 +243,7 @@ while($foto=mysqli_fetch_assoc($mostrarfoto)){
 border-style: solid;" >
   <div class="row d-flex justify-content-center">
 
-
-
-<div class="cart" >
-  <div class="pt-3 pl-0 pb-0 pr-0" style="height: auto; width: auto;">
-  <i class="fas fa-shopping-cart fa-2x ml-md-5" style="color:white;">  </i>
-  </div>
-  
-  <span style="background-color: purple;" class="badge badge-sucess mt-0 align-self-start" id="cart_item_count" style="margin-left: -25
-  px; margin-top: -5px;">0</span>
-  
-   </div>
-  
-   <h1>Lista de Usuarios </h1>
-
-
-
-
-  
-<div class="jumbotron">
+  <div class="jumbotron">
 		<div class="input-group mb-3">
 		  <input type="text" class="form-control" id="txtbusca_curso" placeholder="Buscar Usuarios" aria-label="Buscar" aria-describedby="basic-addon2">
 		  <div class="input-group-append">
@@ -282,6 +264,24 @@ border-style: solid;" >
     
     <div class="salida2">Resultados</div>
 		</div>
+
+<div class="cart" >
+  <div class="pt-3 pl-0 pb-0 pr-0" style="height: flex; width: auto;">
+  <i class="fas fa-shopping-cart fa-2x ml-md-5" style="color:white;">  </i>
+  </div>
+  
+  <span style="background-color: purple;" class="badge badge-sucess mt-0 align-self-start" id="cart_item_count" style="margin-left: -25
+  px; margin-top: -5px;">0</span>
+  
+   </div>
+  
+ 
+
+
+
+
+  
+
 
 
 </div>
